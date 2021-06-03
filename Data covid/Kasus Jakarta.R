@@ -5,7 +5,7 @@ library(dplyr)
 library(tidyr)
 
 resp_jakarta <- GET("https://data.covid19.go.id/public/api/prov_detail_DKI_JAKARTA.json")
-cov_jakarta_raw <- content(resp_jateng, as = "parsed", simplifyVector = TRUE)
+cov_jakarta_raw <- content(resp_jakarta, as = "parsed", simplifyVector = TRUE)
 
 names(cov_jakarta_raw)
 
@@ -16,7 +16,7 @@ cov_jakarta_raw$sembuh_persen
 cov_jakarta <- cov_jakarta_raw$list_perkembangan
 str(cov_jakarta)
 
-head(cov_jateng)
+head(cov_jakarta)
 
 
 new_cov_jakarta <-
@@ -32,7 +32,7 @@ new_cov_jakarta <-
     tanggal = as.POSIXct(tanggal / 1000, origin = "1970-01-01"),
     tanggal = as.Date(tanggal)
   )
-str(new_cov_jateng)  
+str(new_cov_jakarta)  
 
 
 
@@ -58,7 +58,7 @@ cov_jakarta_akumulasi_pivot <-
 
 dim(cov_jakarta_akumulasi_pivot)
 
-ggplot(cov_jakarta_akumulasi_pivot, aes(tanggal, jumlah, colour=(kategori)))+
+ggplot(cov_jakarta_akumulasi_pivot, aes(tanggal, jumlah/1000, colour=(kategori)))+
   geom_line(size=0.9)+
   scale_y_continuous(sec.axis=dup_axis(name=NULL))+
   scale_colour_manual(
@@ -71,7 +71,7 @@ ggplot(cov_jakarta_akumulasi_pivot, aes(tanggal, jumlah, colour=(kategori)))+
   )+
   labs(
     x=NULL,
-    y="Jumlah kasus akumulasi",
+    y="Jumlah kasus akumulasi / seribu",
     colour=NULL,
     title="Dinamika Kasus COVID-19 di DKI JAKARTA",
     caption="Sumber data: covid.19.go.id"
@@ -86,3 +86,5 @@ ggplot(cov_jakarta_akumulasi_pivot, aes(tanggal, jumlah, colour=(kategori)))+
     plot.title=element_text(hjust=0.5),
     legend.position="top"
   )
+
+warnings()
