@@ -45,6 +45,8 @@ cov_jakarta_akumulasi <-
     akumulasi_meninggal = cumsum(meninggal)
   )
 
+dim(cov_jakarta_akumulasi)
+
 cov_jakarta_akumulasi_pivot <- 
   cov_jakarta_akumulasi %>% 
   gather(
@@ -58,7 +60,7 @@ cov_jakarta_akumulasi_pivot <-
 
 dim(cov_jakarta_akumulasi_pivot)
 
-ggplot(cov_jakarta_akumulasi_pivot, aes(tanggal, jumlah/1000, colour=(kategori)))+
+ggplot(cov_jakarta_akumulasi_pivot, aes(tanggal, jumlah/1000000, colour=(kategori)))+
   geom_line(size=0.9)+
   scale_y_continuous(sec.axis=dup_axis(name=NULL))+
   scale_colour_manual(
@@ -71,7 +73,7 @@ ggplot(cov_jakarta_akumulasi_pivot, aes(tanggal, jumlah/1000, colour=(kategori))
   )+
   labs(
     x=NULL,
-    y="Jumlah kasus akumulasi / seribu",
+    y="Jumlah kasus akumulasi(Satuan Juta)",
     colour=NULL,
     title="Dinamika Kasus COVID-19 di DKI JAKARTA",
     caption="Sumber data: covid.19.go.id"
