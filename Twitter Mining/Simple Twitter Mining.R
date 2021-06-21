@@ -5,10 +5,10 @@ library(xlsx)
 library(stringr)
 library(plyr)
 
-consumer_key = "m2BwVwnoJV99e1KwemZZLOqGk"
-consumer_secret = "eBluHf419cPTCD3WxgTd6YnuVFCOL80DB2Hb5J5brLRsPuwomd"
-access_token = "69820722-g3nAAdyhgnQEPu8Vipq1jWY7dmVD50L4wITNK52G9"
-access_secret ="eK0dPekfF1GHSoLOWJ6PyCsGyUfZs9gcnDU13xsMYPA6E"
+consumer_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+consumer_secret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+access_token = "XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+access_secret ="XXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
 some_tweets2 = searchTwitter('covid+haji', n = 12000, lang = "en",retryOnRateLimit = 10e3)
 
