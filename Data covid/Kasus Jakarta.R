@@ -40,11 +40,12 @@ cov_jakarta_akumulasi <-
   new_cov_jakarta %>% 
   transmute(
     tanggal,
-    akumulasi_aktif = cumsum(kasus_baru) - cumsum(sembuh) - cumsum(meninggal),
+    akumulasi_aktif = cumsum(kasus_baru),
     akumulasi_sembuh = cumsum(sembuh),
     akumulasi_meninggal = cumsum(meninggal)
   )
 
+print(cov_jakarta_akumulasi)
 dim(cov_jakarta_akumulasi)
 
 cov_jakarta_akumulasi_pivot <- 
